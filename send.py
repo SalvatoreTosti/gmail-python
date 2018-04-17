@@ -19,7 +19,7 @@ mail = Mail(app)
 if __name__ == '__main__':
     with app.app_context():
         msg = Message(subject="Hello",
-                      sender=app.config.get("MAIL_USERNAME"),
-                      recipients=["<recipient email here>"], # use your email for testing
+                      sender=os.environ['EMAIL_USER'],
+                      recipients=[os.environ["EMAIL_RECIPIENT"]], # use your email for testing
                       body="This is a test email I sent with Gmail and Python!")
         mail.send(msg)
