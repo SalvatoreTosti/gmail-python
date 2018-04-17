@@ -4,6 +4,10 @@ import os
 
 app = Flask(__name__)
 
+@app.route("/")
+def hello():
+    return "Sending email from: " + os.environ['EMAIL_USER'] + " to " + os.environ['EMAIL_RECIPIENT']
+
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
     "MAIL_PORT": 465,
