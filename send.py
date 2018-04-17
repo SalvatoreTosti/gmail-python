@@ -20,6 +20,6 @@ if __name__ == '__main__':
     with app.app_context():
         msg = Message(subject="Hello",
                       sender=os.environ['EMAIL_USER'],
-                      recipients=[os.environ["EMAIL_RECIPIENT"]], # use your email for testing
+                      recipients=[os.environ['EMAIL_RECIPIENT']], # use your email for testing
                       body="This is a test email I sent with Gmail and Python!")
         mail.send(msg)
