@@ -4,10 +4,6 @@ import os
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return "Sending email from: " + os.environ['EMAIL_USER'] + " to " + os.environ['EMAIL_RECIPIENT']
-
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
     "MAIL_PORT": 465,
@@ -20,7 +16,13 @@ mail_settings = {
 app.config.update(mail_settings)
 mail = Mail(app)
 
-if __name__ == '__main__':
+@app.route("/")
+def index():
+    send()
+    return "Sending email from: " + os.environ['EMAIL_USER'] + " to " + os.environ['EMAIL_RECIPIENT']
+
+
+def send():
     with app.app_context():
         msg = Message(subject="Hello",
                       sender=os.environ['EMAIL_USER'],
